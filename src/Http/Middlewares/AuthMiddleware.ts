@@ -15,7 +15,9 @@ export default class AuthMiddleware implements AuthMiddlewareInterface {
     @inject(INTERFACES.UserRepositoryInterface) private userRepository: UserRepositoryInterface,
   ) {}
 
-  public async check(request: Request): Promise<Request> {
+  public async check(
+    request: Request
+    ): Promise<Request> {
     const token = request.headers.authorization;
     try {
       jwt.verify(token, process.env.JWT_SECRET);
