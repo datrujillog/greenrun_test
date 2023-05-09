@@ -1,0 +1,10 @@
+node_modules/
+dist/
+migrations/
+*.min.*
+*.log
+.env
+.env.*
+*.lock
+.prettierignore
+.gitignore

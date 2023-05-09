@@ -1,0 +1,15 @@
+name: Code Style Workflow
+
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install project's dependencies
+        run: |
+          yarn install
+      - name: Prettier
+        run: yarn prettier:check

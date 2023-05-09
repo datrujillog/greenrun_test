@@ -1,0 +1,1020 @@
+{
+    "swagger": "2.0",
+    "host": "172.21.0.5:3000",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+    "info": {
+      "title": "GreenRun API Documentation",
+      "version": "0.0.1"
+    },
+    "securityDefinitions": {
+      "Bearer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "tags": [],
+    "paths": {
+      "/bets": {
+        "get": {
+          "operationId": "getBets",
+          "parameters": [
+            {
+              "type": "number",
+              "name": "event_id",
+              "in": "query",
+              "required": false
+            },
+            {
+              "type": "string",
+              "x-format": {
+                "alphanum": true
+              },
+              "name": "sport",
+              "in": "query",
+              "required": false
+            }
+          ],
+          "tags": [
+            "bets"
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "$ref": "#/definitions/Model1"
+              },
+              "description": "Retreived information about bets successfully"
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        },
+        "post": {
+          "operationId": "postBets",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "$ref": "#/definitions/Model7"
+              }
+            }
+          ],
+          "tags": [
+            "bets"
+          ],
+          "responses": {
+            "200": {
+              "description": "Created bet successfully",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      },
+      "/users": {
+        "get": {
+          "operationId": "getUsers",
+          "tags": [
+            "users"
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "$ref": "#/definitions/Model3"
+              },
+              "description": "Retreived data successfully"
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        },
+        "post": {
+          "operationId": "postUsers",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "$ref": "#/definitions/Model11"
+              }
+            }
+          ],
+          "tags": [
+            "users"
+          ],
+          "responses": {
+            "200": {
+              "description": "BadRequest",
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "/users/balance": {
+        "get": {
+          "operationId": "getUsersBalance",
+          "parameters": [
+            {
+              "type": "number",
+              "name": "user_id",
+              "in": "query",
+              "required": true
+            }
+          ],
+          "tags": [
+            "users"
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "$ref": "#/definitions/Model4"
+              },
+              "description": "Retreived information about users balance successfully"
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      },
+      "/users/transactions": {
+        "get": {
+          "operationId": "getUsersTransactions",
+          "parameters": [
+            {
+              "type": "number",
+              "name": "user_id",
+              "in": "query",
+              "required": true
+            },
+            {
+              "type": "string",
+              "enum": [
+                "bet",
+                "deposit",
+                "winning",
+                "withdraw"
+              ],
+              "x-format": {
+                "alphanum": true
+              },
+              "name": "category",
+              "in": "query",
+              "required": true
+            }
+          ],
+          "tags": [
+            "users"
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "$ref": "#/definitions/Model6"
+              },
+              "description": "Retreived information about transactions successfully"
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      },
+      "/deposit": {
+        "post": {
+          "operationId": "postDeposit",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "$ref": "#/definitions/Model8"
+              }
+            }
+          ],
+          "tags": [
+            "deposit"
+          ],
+          "responses": {
+            "200": {
+              "description": "Deposited some amount of money on an account successfully",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      },
+      "/login": {
+        "post": {
+          "operationId": "postLogin",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "$ref": "#/definitions/Model9"
+              }
+            }
+          ],
+          "tags": [
+            "login"
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "$ref": "#/definitions/Model10"
+              },
+              "description": "Login successfully"
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      },
+      "/withdraw": {
+        "post": {
+          "operationId": "postWithdraw",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "$ref": "#/definitions/Model8"
+              }
+            }
+          ],
+          "tags": [
+            "withdraw"
+          ],
+          "responses": {
+            "200": {
+              "description": "Withdrawed some amount of money from an account successfully",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      },
+      "/users/bets": {
+        "post": {
+          "operationId": "postUsersBets",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "$ref": "#/definitions/Model13"
+              }
+            }
+          ],
+          "tags": [
+            "users"
+          ],
+          "responses": {
+            "200": {
+              "description": "Placed a user bet successfully",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      },
+      "/bets/{id}": {
+        "put": {
+          "operationId": "putBetsId",
+          "parameters": [
+            {
+              "type": "number",
+              "name": "id",
+              "in": "path",
+              "required": true
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "$ref": "#/definitions/Model14"
+              }
+            }
+          ],
+          "tags": [
+            "bets"
+          ],
+          "responses": {
+            "200": {
+              "description": "Updated bet successfully",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      },
+      "/users/{id}": {
+        "put": {
+          "operationId": "putUsersId",
+          "parameters": [
+            {
+              "type": "number",
+              "name": "id",
+              "in": "path",
+              "required": true
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "$ref": "#/definitions/Model15"
+              }
+            }
+          ],
+          "tags": [
+            "users"
+          ],
+          "responses": {
+            "200": {
+              "description": "Updated data successfully",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      },
+      "/bets/{id}/result": {
+        "put": {
+          "operationId": "putBetsIdResult",
+          "parameters": [
+            {
+              "type": "number",
+              "name": "id",
+              "in": "path",
+              "required": true
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "$ref": "#/definitions/Model16"
+              }
+            }
+          ],
+          "tags": [
+            "bets"
+          ],
+          "responses": {
+            "200": {
+              "description": "Setted a result on a bet successfully",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      },
+      "/users/{id}/ban": {
+        "put": {
+          "operationId": "putUsersIdBan",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "schema": {
+                "$ref": "#/definitions/Model17"
+              }
+            }
+          ],
+          "tags": [
+            "users"
+          ],
+          "responses": {
+            "200": {
+              "description": "Baned user successfully",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "BadRequest"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Model1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "bet_option": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "cancelled",
+              "settled"
+            ],
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "sport": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "name": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "event_id": {
+            "type": "number"
+          },
+          "odd": {
+            "type": "number"
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "won",
+              "lost"
+            ],
+            "x-format": {
+              "alphanum": true
+            }
+          }
+        },
+        "required": [
+          "bet_option",
+          "status",
+          "sport",
+          "name",
+          "event_id",
+          "odd",
+          "result"
+        ]
+      },
+      "Model2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ],
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "first_name": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "last_name": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "phone": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "email": {
+            "type": "string",
+            "x-format": {
+              "email": true
+            }
+          },
+          "username": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "password": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "address": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "gender": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "birth_date": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "country_id": {
+            "type": "number"
+          },
+          "city": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "category": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "document_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "role",
+          "first_name",
+          "last_name",
+          "phone",
+          "email",
+          "username",
+          "password",
+          "address",
+          "gender",
+          "birth_date",
+          "country_id",
+          "city",
+          "category",
+          "document_id"
+        ]
+      },
+      "Model3": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Model2"
+        }
+      },
+      "Model4": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "Model5": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "category": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "status": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "user_bet_id": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "deleted_at": {
+            "type": "string"
+          }
+        }
+      },
+      "Model6": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Model5"
+        }
+      },
+      "Model7": {
+        "type": "object",
+        "properties": {
+          "bet_option": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "sport": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "name": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "event_id": {
+            "type": "number"
+          },
+          "odd": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "bet_option",
+          "sport",
+          "name",
+          "event_id",
+          "odd"
+        ]
+      },
+      "Model8": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "number"
+          },
+          "amount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "user_id",
+          "amount"
+        ]
+      },
+      "Model9": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username"
+        ]
+      },
+      "Model10": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "enum": [
+              "jwt"
+            ]
+          }
+        }
+      },
+      "Model11": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ],
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "first_name": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "last_name": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "phone": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "email": {
+            "type": "string",
+            "x-format": {
+              "email": true
+            }
+          },
+          "username": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "password": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "address": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "gender": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "birth_date": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "country_id": {
+            "type": "number"
+          },
+          "city": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "category": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "document_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "role",
+          "first_name",
+          "last_name",
+          "phone",
+          "email",
+          "username",
+          "password",
+          "address",
+          "gender",
+          "birth_date",
+          "country_id",
+          "city",
+          "category",
+          "document_id"
+        ]
+      },
+      "Model12": {
+        "type": "object",
+        "properties": {
+          "betId": {
+            "type": "number"
+          },
+          "amount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "betId",
+          "amount"
+        ]
+      },
+      "bets": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Model12"
+        }
+      },
+      "Model13": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number"
+          },
+          "bets": {
+            "$ref": "#/definitions/bets"
+          }
+        },
+        "required": [
+          "userId",
+          "bets"
+        ]
+      },
+      "Model14": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "cancelled",
+              "settled"
+            ]
+          },
+          "odd": {
+            "type": "number"
+          }
+        }
+      },
+      "Model15": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "last_name": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "phone": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "email": {
+            "type": "string",
+            "x-format": {
+              "email": true
+            }
+          },
+          "username": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "password": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "address": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "gender": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "birth_date": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "country_id": {
+            "type": "number"
+          },
+          "city": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "category": {
+            "type": "string",
+            "x-format": {
+              "alphanum": true
+            }
+          },
+          "document_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "phone",
+          "email",
+          "username",
+          "password",
+          "address",
+          "gender",
+          "birth_date",
+          "country_id",
+          "city",
+          "category",
+          "document_id"
+        ]
+      },
+      "Model16": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "string",
+            "enum": [
+              "won",
+              "lost"
+            ]
+          }
+        },
+        "required": [
+          "result"
+        ]
+      },
+      "Model17": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    }
+  }
